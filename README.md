@@ -2,20 +2,73 @@
 코드관리정책 공지용 Repository 입니다. 모든 개발 관련 전달 및 정책은 이곳에 게시합니다.
 
 ## 개발용 에디터(이클립스, 인텔리J 등)
-1. 기본 에디터는 배포해드린 STS3 입니다. 필요할 수도 있으니 STS4도 설치해두십시오.
-2. 취향 따라서 인텔리J 등의 에디터를 사용하실 수도 있으나, 에디터 설정파일등 차이로 불필요한 파일이 Git에 포함될 수도 있습니다. 현재는 다음과 같은 에디터의 파일이 예외정책에 포함되어 있으니 편하신대로 사용하시면 됩니다.
+1. 모두 사용 가능합니다만, 현 시점부터는 생산성을 위해 인텔리J로 통일하겠습니다.
+2. 다음과 같은 에디터의 제외해야 하는 설정파일이 정의되어 있으니 불필요한 파일이 commit 되는 일은 없습니다만, 혹시 불필요한 파일이 commit 리스트에 포함되었다면 따로 말씀 부탁드립니다.
 * STS, Eclipse
 * IntelliJ 
 3. 최초 코딩 전에 반드시 사용하시는 에디터의 __인코딩을 UTF-8로 변경__ 하십시오.
 
-## 메인 API 개발
-* __BitOpenAPI__ repository에 메인 API 개발중입니다. 해당 프로젝트가 앞으로 있을 모든 프로젝트의 기본 API 입니다.   
+## 메인 API 개발 환경
+* 빌드 도구 : maven
+* 자바버전 : 1.8
+* DB : mysql 5.7.15
+* 톰캣 : 9
+* 자동 병합+빌드 체계 : 리눅스+젠킨스 기반으로 개발중
 
 ## Project 명명 규칙
-프로젝트 이름은 __RESTApi-SpringLegacy__ repository 안에 __프로젝트이름ApiSpringLegacy__ 으로 생성하십시오. 차후 있을 SpringBoot 전환 작업과 구분하기 위함입니다. 이하는 예시 입니다.   
+프로젝트 컨셉을 그대로 사용하여도 무방하나, 특정 기술의 명시가 필요하다면 프로젝트 이름을 __RESTApi__ 라고 가정할 때, __프로젝트이름Api-SpringLegacy__ 등으로 생성하십시오. 이하는 예시 입니다.   
 예시 :   
-NameApi(스프링레거시) ➙ NameApiSpringLegacy   
-NameApi(스프링부트) ➙ NameApiSpringBoot   
+POSApi(스프링레거시) ➙ POSApi-SpringLegacy   
+POSApi(스프링부트) ➙ POSApi-SpringBoot   
+
+## Project 내 클래스, 변수 명명 규칙
+* 카멜케이스 명명법 사용 : 첫글자 소문자, 이후 연결단어들의 첫글자를 대문자
+ex) camelCaseParameter
+* 이하 구체적인 명명법 :   
+* * *
+# class (클래스)   
+대문자로 시작하고, 명사를 사용합니다.   
+```java
+class Thread;
+class Raster;
+class ImageSprite;
+```
+# interface (인터페이스)   
+대문자로 시작하고, 형용사를 사용합니다.   
+```java
+interface Runnable;
+interface RasterDelegate;
+interface Storing;
+```
+# method (함수)   
+소문자로 시작하고, 동사를 사용합니다.   
+```java
+add();
+runFast();
+getBackground();
+```
+# variable (변수)   
+소문자로 시작합니다.   
+```java
+int i;
+char c;
+float myWidth;
+String phoneNumber;
+```
+# Package (패키지)   
+소문자로 시작합니다.   
+```java
+com.sun.eng
+com.apple.quicktime.v2
+edu.cmu.cs.bovik.cheese
+```
+constant (상수)  
+# 대문자로 시작합니다.
+```java
+static final int MAX_WIDTH = 999;
+static final int GET_THE_CPU = 1;
+```
+* * *
 
 ## Repository 명명 규칙
 * '프로젝트이름' 만 사용하도록 하겠습니다.   
@@ -38,18 +91,17 @@ __GitHub에 push 하면 해당 repository에 전부 적용되므로, 변동시�
 __자세한 사용법은 GitManual.md를 참고하십시오.__
 
 ## 코드 병합 방안
-향후 실제 개발 진행시 Push/Pull 꼬이지 않도록 절차를 정해두고자 합니다. 회의 결과, 현재 프로젝트는 개발branch 생성 없이 메인branch에 직접 commit/push 하기로 했습니다. 이후 필요에 따라 1번 제안으로 개발/이슈branch 생성하여 PullRequest 진행하겠습니다.   
+향후 실제 개발 진행시 Push/Pull 꼬이지 않도록 절차를 정해두고자 합니다.   
 
 * 개발/이슈branch 생성 필요사항은 다음과 같습니다.
 1. 원격근무시(자가격리, 혹은 원격근무 하는 외주인력 등)
    해당 상황은 대면 회의가 아니고 착오가 발생할 확률이 높기 때문에 github의 코드리뷰 화면을 보고 병합여부를 판단해야 합니다.
 2. 기타 위험도가 높다고 판단된 개발사항
 
-* 프로젝트 종료 후 병합 방안은 다음과 같습니다.
-프로젝트 종료 후에 API가 안정화 되면 2번 제안으로 원본코드 보존하면서 진행하겠습니다.
-__현재 프로젝트 종료 후 안정화 단계로 진입하면, 정말 특별한 경우 제외하고 메인branch에 직접 commit 하는 일은 없도록 하겠습니다.__   
+* 병합 방안은 다음과 같습니다만, 기본적으로 2번 제안으로 원본코드 보존하면서 진행하겠습니다.
+__정말 특별한 경우 제외하고 메인branch에 직접 commit 하는 일은 없도록 하겠습니다.__   
 
-## 현행 결정사항 (branch 생성 안함)
+## 긴급진행시
 구조 : 팀계정 Repository 메인branch -(clone)→ 로컬 Repository의 메인branch
 1. Clone
    - 팀계정 Repository에서 로컬 Repository로 clone,remote 설정
