@@ -62,8 +62,8 @@ com.sun.eng
 com.apple.quicktime.v2
 edu.cmu.cs.bovik.cheese
 ```
-constant (상수)  
-### 대문자로 시작합니다.
+### constant (상수)  
+대문자로 시작합니다.
 ```java
 static final int MAX_WIDTH = 999;
 static final int GET_THE_CPU = 1;
