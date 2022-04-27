@@ -26,28 +26,28 @@ POSApi(스프링부트) ➙ POSApi-SpringBoot
 ex) camelCaseParameter
 * 이하 구체적인 명명법 :   
 * * *
-# class (클래스)   
+### class (클래스)   
 대문자로 시작하고, 명사를 사용합니다.   
 ```java
 class Thread;
 class Raster;
 class ImageSprite;
 ```
-# interface (인터페이스)   
+### interface (인터페이스)   
 대문자로 시작하고, 형용사를 사용합니다.   
 ```java
 interface Runnable;
 interface RasterDelegate;
 interface Storing;
 ```
-# method (함수)   
+### method (함수)   
 소문자로 시작하고, 동사를 사용합니다.   
 ```java
 add();
 runFast();
 getBackground();
 ```
-# variable (변수)   
+### variable (변수)   
 소문자로 시작합니다.   
 ```java
 int i;
@@ -55,7 +55,7 @@ char c;
 float myWidth;
 String phoneNumber;
 ```
-# Package (패키지)   
+### Package (패키지)   
 소문자로 시작합니다.   
 ```java
 com.sun.eng
@@ -63,7 +63,7 @@ com.apple.quicktime.v2
 edu.cmu.cs.bovik.cheese
 ```
 constant (상수)  
-# 대문자로 시작합니다.
+### 대문자로 시작합니다.
 ```java
 static final int MAX_WIDTH = 999;
 static final int GET_THE_CPU = 1;
